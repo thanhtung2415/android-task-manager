@@ -1,4 +1,4 @@
-package com.example.androidtaskmanager
+package com.thanhtung.androidtaskmanager
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.example.androidtaskmanager.ui.theme
+package com.thanhtung.androidtaskmanager.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
