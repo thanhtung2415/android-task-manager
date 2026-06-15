@@ -76,20 +76,20 @@ private fun TaskManagerApp() {
         mutableStateListOf(
             Task(
                 id = 1,
-                title = "Finish Android project setup",
-                description = "Configure package name, Gradle, Git, and GitHub repository.",
+                title = "Review Android lesson notes",
+                description = "Read the notes from class and mark anything that needs more practice.",
                 status = TaskStatus.DONE,
             ),
             Task(
                 id = 2,
-                title = "Build task list UI",
-                description = "Create a clean Compose screen for showing tasks and statuses.",
+                title = "Improve Task Manager UI",
+                description = "Refine the Compose screen so the project looks clear on GitHub.",
                 status = TaskStatus.DOING,
             ),
             Task(
                 id = 3,
-                title = "Add local storage",
-                description = "Persist tasks locally in a later version of the app.",
+                title = "Prepare README screenshots",
+                description = "Capture app screenshots after the first stable version is ready.",
                 status = TaskStatus.TODO,
             ),
         )
@@ -124,6 +124,12 @@ private fun TaskManagerApp() {
             Header(
                 totalTasks = tasks.size,
                 doneTasks = tasks.count { it.status == TaskStatus.DONE },
+            )
+            Spacer(modifier = Modifier.height(14.dp))
+            StatusSummaryRow(
+                todoCount = tasks.count { it.status == TaskStatus.TODO },
+                doingCount = tasks.count { it.status == TaskStatus.DOING },
+                doneCount = tasks.count { it.status == TaskStatus.DONE },
             )
             Spacer(modifier = Modifier.height(16.dp))
             StatusFilterRow(
@@ -181,7 +187,7 @@ private fun TaskManagerApp() {
 private fun Header(totalTasks: Int, doneTasks: Int) {
     Column {
         Text(
-            text = "Android Task Manager",
+            text = "Thanh Tung Task Manager",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
         )
@@ -191,6 +197,65 @@ private fun Header(totalTasks: Int, doneTasks: Int) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             style = MaterialTheme.typography.bodyMedium,
         )
+    }
+}
+
+@Composable
+private fun StatusSummaryRow(
+    todoCount: Int,
+    doingCount: Int,
+    doneCount: Int,
+) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        SummaryCard(
+            label = "Todo",
+            count = todoCount,
+            modifier = Modifier.weight(1f),
+        )
+        SummaryCard(
+            label = "Doing",
+            count = doingCount,
+            modifier = Modifier.weight(1f),
+        )
+        SummaryCard(
+            label = "Done",
+            count = doneCount,
+            modifier = Modifier.weight(1f),
+        )
+    }
+}
+
+@Composable
+private fun SummaryCard(
+    label: String,
+    count: Int,
+    modifier: Modifier = Modifier,
+) {
+    Surface(
+        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.08f),
+        shape = MaterialTheme.shapes.medium,
+        modifier = modifier,
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(vertical = 12.dp),
+        ) {
+            Text(
+                text = count.toString(),
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary,
+            )
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
     }
 }
 

@@ -9,6 +9,7 @@ This project is part of my mobile app development portfolio. The current version
 ## Features
 
 - View sample tasks in a mobile-friendly list
+- See a simple Todo / Doing / Done status summary
 - Filter tasks by status: All, Todo, Doing, Done
 - Add a new task with title, description, and status
 - Update a task status
@@ -42,4 +43,3 @@ The app currently stores tasks in memory. Data will reset when the app restarts.
 - Building UI with Jetpack Compose
 - Managing simple UI state
 - Using Git and GitHub for source control
-
